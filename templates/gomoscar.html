@@ -33,12 +33,12 @@
         {{range $prod := .Prods}}
         <tbody>
           <td>
-            <img src={{index $prod.IconName }} style="width: 30px; height: 30px;"/>
+            <img src={{index $prod.Icon }} style="width: 30px; height: 30px;"/>
           </td>
           <td>{{index $prod.Name}}</td>
-          <td>{{index $prod.Description}}</td>
+          <td>{{index $prod.Descript}}</td>
           <td>
-            <a href={{index $prod.PackageCompleteURL}}>
+            <a href={{index $prod.DownloadURL}}>
             {{index $prod.Version}}
           </td>
         </tbody>

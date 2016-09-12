@@ -3,7 +3,7 @@
 *.o
 *.a
 *.so
-
+moscar
 # Folders
 _obj
 _test

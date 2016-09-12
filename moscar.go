@@ -17,7 +17,25 @@ const REPO_PATH string = "/Users/Shared/repo"
 
 type Context struct {
 	Static string
-	Prods  models.PkgsInfoCollection
+	Prods  []ParsedPkginfo
+}
+
+// Template expects icon, 'product' name, description, and version, which becomes the download URL
+type ParsedPkginfo struct {
+	Icon        string
+	Name        string
+	Descript    string
+	Version     string
+	DownloadURL string
+}
+
+func Parse(in_pkginfo *models.PkgsInfo, ppi *ParsedPkginfo) *ParsedPkginfo {
+	ppi.Icon = in_pkginfo.IconName
+	ppi.Name = in_pkginfo.Name
+	ppi.Descript = in_pkginfo.Description
+	ppi.Version = in_pkginfo.Version
+	ppi.DownloadURL = in_pkginfo.PackageCompleteURL
+	return ppi
 }
 
 func Home(w http.ResponseWriter, req *http.Request) {
@@ -27,7 +45,13 @@ func Home(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		log.Fatal("faux-catalog building error: ", err)
 	}
-	prods := *catalog
+	allcat := *catalog
+	prods := make([]ParsedPkginfo, 0)
+	for _, pkginfo := range allcat {
+		pi := &ParsedPkginfo{}
+		ppi := Parse(pkginfo, pi)
+		prods = append(prods, *ppi)
+	}
 	context := Context{Prods: prods}
 	render(w, "gomoscar.html", context)
 }
