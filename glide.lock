@@ -1,0 +1,12 @@
+hash: 6e6c75ac037e101088f94452802041f618434008069bbd13cf60af91d7773d71
+updated: 2016-09-18T13:55:31.267293408-04:00
+imports:
+- name: github.com/groob/plist
+  version: e9ca5cd129407b401d850bc3248338865a7490ae
+- name: github.com/micromdm/squirrel
+  version: 3f7f6185b0dc799cbd9f1ea81352c0b7b3227419
+  subpackages:
+  - munki/datastore
+  - munki/models
+  - munki/munki
+testImports: []
