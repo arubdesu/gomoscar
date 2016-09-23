@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
-	"github.com/micromdm/squirrel/munki/datastore"
-	"github.com/micromdm/squirrel/munki/models"
 	"html/template"
 	"io"
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/micromdm/squirrel/munki/datastore"
+	"github.com/micromdm/squirrel/munki/munki"
 )
 
 const STATIC_URL string = "/static/"
@@ -29,7 +30,7 @@ type ParsedPkginfo struct {
 	DownloadURL string
 }
 
-func Parse(in_pkginfo *models.PkgsInfo, ppi *ParsedPkginfo) *ParsedPkginfo {
+func Parse(in_pkginfo *munki.PkgsInfo, ppi *ParsedPkginfo) *ParsedPkginfo {
 	ppi.Icon = in_pkginfo.IconName
 	ppi.Name = in_pkginfo.Name
 	ppi.Descript = in_pkginfo.Description

@@ -1,0 +1,6 @@
+package: github.com/arubdesu/gomoscar
+import:
+- package: github.com/micromdm/squirrel
+  subpackages:
+  - munki/datastore
+  - munki/models
